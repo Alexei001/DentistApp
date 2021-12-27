@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Error page";
+    var errorMessage = ViewBag.ErrorMessage;
+    var errorTitle = ViewBag.ErrorTitle;
+}
+
+
+<div class="w-75">
+    <h3 class="text-danger font-weight-bold">@errorTitle</h3>
+    <p class="text-danger">@errorMessage</p>
+</div>

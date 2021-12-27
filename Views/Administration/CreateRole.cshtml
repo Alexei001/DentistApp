@@ -1,0 +1,36 @@
+﻿@model RoleCreateViewModel;
+
+@{
+    ViewBag.Title = "Create Role";
+}
+
+
+<div class="d-flex justify-content-center w-100 h-auto">
+    <form action="/" method="post" class="w-75">
+        <div class="card ">
+            <h5 class="card-header">Create Role</h5>
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label asp-for="RoleName" class="form-label">Name</label>
+                    <input asp-for="RoleName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                    
+                </div>
+                @for (int i = 0; i < Model.Users.Count; i++)
+                {
+                    <div class="form-check">
+                        <input asp-for="@Model.Users[i].IsInRole" class="form-check-input" type="checkbox">
+                        <input asp-for="@Model.Users[i].Name" class="form-check-input" type="hidden">
+                        <input asp-for="@Model.Users[i].Id" class="form-check-input" type="hidden">
+                        <label class="form-check-label">@Model.Users[i].Name</label>
+                    </div>
+                }
+
+            </div>
+            <div class="card-footer">
+                <button asp-action="CreateRole" asp-controller="Administration"  type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

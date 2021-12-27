@@ -1,0 +1,33 @@
+﻿@model Client;
+
+
+@{
+    ViewBag.Title = "Client Details";
+}
+
+<div class="card">
+    <h5 class="card-header">Card Details :</h5>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <div class="card-text">
+            <span><span class="font-weight-bold">Email:</span> @Model.Email</span><hr />
+            <span><span class="font-weight-bold">Doctor:</span> @Model.Doctor.Name</span><br />
+            <span><span class="font-weight-bold">Procedure:</span> @Model.Procedure.Name</span><br />
+            <span><span class="font-weight-bold">Available:</span> @Model.Available</span><br />
+            <span><span class="font-weight-bold">Phone nr:</span> @Model.PhoneNumber</span><hr />
+            <span><span class="font-weight-bold">Comment:</span> @Model.Comment</span>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a asp-controller="Booking" asp-action="UpdateClient" asp-route-Id="@Model.Id" class="btn btn-success">Update</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-controller="Booking" asp-action="GetClients" class="btn btn-danger">Back</a>
+        }
+        else
+        {
+            <a asp-controller="Booking" asp-action="GetAllClientsByUserId" class="btn btn-danger">Back</a>
+        }
+
+    </div>
+</div>

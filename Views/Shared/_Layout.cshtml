@@ -1,0 +1,102 @@
+﻿@inject SignInManager<IdentityUser> signInManager;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DentistApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DentistApp</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SimpleJob">SimpleJob</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <div class=" dropdown btn-group">
+                                    <button class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                                        Booking
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenu1">
+                                        <li><a class="dropdown-item" asp-controller="Booking" asp-action="GetAllClientsByUserId" type="button">My bookings</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Booking" asp-action="AddNewClient" type="button">New booking</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class=" dropdown btn-group">
+                                    <button class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                                        Administration
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenu1">
+                                        <li><a class="dropdown-item" asp-controller="Booking" asp-action="GetClients" type="button">Booking Management</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Administration" asp-action="AllRoles" type="button">Role Management</a></li>
+                                        <li><a class="dropdown-item" type="button">User Management</a></li>
+                                        <li><a class="dropdown-item" type="button">Doctor</a></li>
+                                        <li><a class="dropdown-item" type="button">Procedure</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <form class="d-flex">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <button formmethod="post" asp-controller="Account" asp-action="Logout" class="btn btn-sm btn-primary  " value="@User.Identity.Name" type="submit">
+                            Logout
+                        </button>
+                        <span style="padding: 5px 5px 5px 15px;" class="text-secondary">@User.Identity.Name</span>
+                    }
+                    else
+                    {
+                        <button class="btn btn-sm btn-primary" style="margin-right:5px;" asp-controller="Account" asp-action="Register">
+                            Register
+                        </button>
+                        <button class="btn btn-sm btn-primary" style="margin-right:5px;" asp-controller="Account" asp-action="Login">
+                            Login
+                        </button>
+                    }
+                </form>
+            </div>
+        </nav>
+    </header>
+    <div class="container h-100">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - DentistApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

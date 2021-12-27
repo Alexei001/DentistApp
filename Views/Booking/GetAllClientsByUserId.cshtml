@@ -1,0 +1,67 @@
+﻿@model IEnumerable<DentistApp.Models.Client>;
+
+@{
+    ViewBag.Title = "My bookings";
+}
+
+<div class="d-flex justify-content-center" style="width:100%;height:auto">
+    @if (Model.Any())
+    {
+        <div class="card">
+            <div class="card-header">
+                <h4>All my bookings</h4>
+            </div>
+            <div class="card-body">
+
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone number</th>
+                            <th scope="col">Available</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var client in Model)
+                        {
+                            <tr>
+                                <th scope="row">@client.Name</th>
+                                <td>@client.Email</td>
+                                <td>@client.PhoneNumber</td>
+                                <td>@client.Available</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+                                        <a type="button" class="btn btn-outline-primary" asp-controller="Booking" asp-action="ClientDetails" asp-route-Id="@client.Id">Details</a>
+                                        <a type="button" class="btn btn-outline-success" asp-controller="Booking" asp-action="UpdateClient" asp-route-Id="@client.Id">Update</a>
+                                        <a type="button" class="btn btn-outline-danger" asp-controller="Booking" asp-action="DeleteClient" asp-route-clientId="@client.Id">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="card-footer"><a class="btn btn-success" asp-controller="Booking" asp-action="AddNewClient">Add new booking</a></div>
+        </div>
+
+
+    }
+    else
+    {
+        <div class="card w-75">
+            <div class="card-header">
+                All my bookings
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-primary"></h5>
+                <p class="card-text">You don't have any rezervation yet!</p>
+
+            </div>
+            <div class="card-footer"><a class="btn btn-success" asp-controller="Booking" asp-action="AddNewClient">Book One!</a></div>
+        </div>
+    }
+</div>

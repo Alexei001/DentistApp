@@ -1,0 +1,101 @@
+﻿@model DentistApp.Models.AllClientsModel;
+
+@{var prevDisabled = !Model.PaginatedList.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.PaginatedList.HasNextPage ? "disabled" : "";
+    ViewBag.Title = "All Clients";
+}
+
+
+@if (Model.Clients.Any())
+{<div class="d-flex flex-column " style="width:100%;height:100%">
+        <div class="card w-100">
+            <div class="card-header d-flex justify-content-between">
+                <h4>All Clients</h4>
+                <form asp-action="GetClients" method="get">
+                    <div class="form-actions no-color">
+                        <p>
+                            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                            <input type="submit" value="Search" class="btn btn-primary btn-sm" />
+                            <a class="btn btn-success btn-sm" asp-action="GetClients">Back to Full List</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body m-0 p-0">
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th scope="col"><a asp-action="GetClients" asp-controller="Booking" asp-route-sortOrder="@ViewBag.NameSort" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a></th>
+                            <th scope="col">Phone number</th>
+                            <th scope="col"><a asp-action="GetClients" asp-controller="Booking" asp-route-sortOrder="@ViewBag.DoctorSort" asp-route-currentFilter="@ViewData["CurrentFilter"]">Doctor</a></th>
+                            <th scope="col"><a asp-action="GetClients" asp-controller="Booking" asp-route-sortOrder="@ViewBag.ProcedureSort" asp-route-currentFilter="@ViewData["CurrentFilter"]">Procedure</a></th>
+                            <th scope="col"><a asp-action="GetClients" asp-controller="Booking" asp-route-sortOrder="@ViewBag.AvailableSort" asp-route-currentFilter="@ViewData["CurrentFilter"]">Available</a></th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var client in Model.Clients)
+                        {
+                            <tr>
+                                <th scope="row">@client.Name</th>
+                                <td>@client.PhoneNumber</td>
+
+                                <td>
+                                    @client.Doctor.Name
+                                </td>
+                                <td>
+                                    @client.Procedure.Name
+                                </td>
+                                <td>
+                                    @client.Available
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+                                        <a type="button" class="btn btn-outline-primary" asp-controller="Booking" asp-action="ClientDetails" asp-route-Id="@client.Id">Details</a>
+                                        <a type="button" class="btn btn-outline-success" asp-controller="Booking" asp-action="UpdateClient" asp-route-Id="@client.Id">Update</a>
+                                        <a type="button" class="btn btn-outline-danger" asp-controller="Booking" asp-action="DeleteClient" asp-route-clientId="@client.Id">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="card-footer"><a class="btn btn-success" asp-controller="Booking" asp-action="AddNewClient">Add new booking</a></div>
+        </div>
+
+        <div class="w-100 h-100 d-flex align-content-end mt-4">
+            <a asp-action="GetClients"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PaginatedList.PageIndex - 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-outline-success mr-2 @prevDisabled">
+                <i class="bi bi-arrow-left-square-fill"></i> Prev 
+            </a>
+            <a asp-action="GetClients"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PaginatedList.PageIndex + 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-outline-success @nextDisabled">
+                <i class="bi bi-arrow-right-square-fill"></i> Next
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card w-75">
+        <div class="card-header">
+            All my bookings
+        </div>
+        <div class="card-body">
+            <h5 class="card-title text-primary"></h5>
+            <p class="card-text">Doesn't have any rezervation yet!</p>
+        </div>
+        <div class="card-footer"><a class="btn btn-success" asp-controller="Booking" asp-action="AddNewClient">Add new booking</a></div>
+    </div>
+
+}
+
+
