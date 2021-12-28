@@ -2,19 +2,19 @@
 
 It's a small ASP.NET Core MVC application that allow scheduling for medical procedure in a dental office.Acces to the registration functionality is allowed only after the creation of the User account, or Login.Implementing client functionality and Administration functionality based on "Client" Role or "Admin" role.
 ###### Technologies Used
-- ASP.NET CORE MVC ver. 5.0
-- Entity Framework Core
+- **ASP.NET CORE MVC ver. 5.0**
+- **Entity Framework Core**
   - Code First, Migration
   - MS SQL Server/T-SQL
-- .NET Identity
+- **.NET Identity**
   - User,Role Management
   - Register New Client
   - Admin Policy Authorization
-- Layered Architecture
-- Quartz.Net library
+- **Layered Architecture**
+- **Quartz.Net library**
  - Scheduling job for Email Notify
-- MailKit, SmtpClinet for Email Services
-- Bootstrap library ver 4.3.1
+- **MailKit, SmtpClinet for Email Services**
+- **Bootstrap library ver 4.3.1**
     
 ###### Client Functionality
 - Get Rezervation by User Id
