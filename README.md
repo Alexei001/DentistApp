@@ -15,7 +15,7 @@ It's a small ASP.NET Core MVC application that allow scheduling for medical proc
  - Scheduling job for Email Notify
 - **MailKit, SmtpClinet for Email Services**
 - **Bootstrap library ver 4.3.1**
-    
+    ###### Home Page ![Home Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/HomePage.jpg)
 ###### Client Functionality
 - Get Rezervation by User Id
 - CRUD operation with client Rezervation
@@ -27,23 +27,23 @@ It's a small ASP.NET Core MVC application that allow scheduling for medical proc
 
 ###### Admin Functionality
 - Booking Management
-  - All List of Clients
-    - CRUD Operation with Entity Framework Core
+  - All List of Clients ![Clients Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/allClients%20page.png)
+    - CRUD Operation with Entity Framework Core 
     - Searching/Sorting/Filters all list of Clients
     - Implementing Pagination with 3 items on page 
 - Role Management
-  - All list of Roles
-     - CRUD operation with .NET Identity
+  - All list of Roles ![Role Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/AllRoles.png)
+     - CRUD operation with .NET Identity Edit user With roles ![Clients Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/EditUserWithRolesManagement.jpg)
      - Add or Delete user from Roles
      - Add or Delete New Roles
      - By default has Admin && Client Roles 
 - User Management
-  - All list of User
+  - All list of User ![Users Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/AllUsers.jpg)
     - CRUD operation with .NET Identity
     - Register new User is done By confirmaton Email with MailKit and SmtpClient
     - Delete User is done only after Removing all the Roles and Client Rezervation
 - Scheduled Jobs
-  - Implementing Email Notification one day Before Client Rezervation
+  - Implementing Email Notification one day Before Client Rezervation ![Schedule Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/Scheduling%20Jobs.jpg
   - Job Scheduling system
     - Implementing Quartz.NET 
   - Trigger
@@ -52,7 +52,7 @@ It's a small ASP.NET Core MVC application that allow scheduling for medical proc
 - Doctor
 - Procedure
 
-###### Register Form ![Form Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/RegisterForm.jpg "Image")
+###### Register Form ![Form Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/RegisterForm.jpg)
 - User Email
 - User Name
 - Password
