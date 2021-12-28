@@ -52,7 +52,7 @@ It's a small ASP.NET Core MVC application that allow scheduling for medical proc
 - Doctor
 - Procedure
 
-###### Register Form 
+###### Register Form ![Form Image](/DentistApp/PrntScrProject/RegisterForm.jpg "Optional Title")
 - User Email
 - User Name
 - Password
