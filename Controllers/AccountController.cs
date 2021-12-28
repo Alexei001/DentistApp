@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace DentistApp.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -96,6 +97,7 @@ namespace DentistApp.Controllers
             return View();
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -152,7 +154,8 @@ namespace DentistApp.Controllers
             return View(model);
         }
 
-
+        [Authorize(Roles = "Client")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

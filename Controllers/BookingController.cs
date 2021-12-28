@@ -61,6 +61,7 @@ namespace DentistApp.Controllers
         }
 
         [HttpGet]
+        
         public IActionResult ClientDetails(int Id)
         {
             var client = _clientsServices.GetClientById(Id);

@@ -50,7 +50,8 @@ namespace DentistApp
             {
                 options.AddPolicy("AdminPolicy", policy =>
                  {
-                     policy.RequireRole("Admin");
+                     policy.RequireAssertion(context =>
+                          context.User.IsInRole("Admin"));                          
                  });
 
             });

@@ -1,6 +1,7 @@
 ﻿using DentistApp.Data;
 using DentistApp.Data.Services;
 using DentistApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Quartz;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DentistApp.Controllers
 {
-
+    [AllowAnonymous]
     public class HomeController : Controller
     {
 

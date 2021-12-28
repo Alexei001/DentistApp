@@ -41,22 +41,26 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li>
-                                <div class=" dropdown btn-group">
-                                    <button class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
-                                        Administration
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenu1">
-                                        <li><a class="dropdown-item" asp-controller="Booking" asp-action="GetClients" type="button">Booking Management</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Administration" asp-action="AllRoles" type="button">Role Management</a></li>
-                                        <li><a class="dropdown-item" type="button" asp-controller="Administration" asp-action="GetUsers">User Management</a></li>
-                                        <li><a class="dropdown-item" type="button" asp-controller="Administration" asp-action="ScheduleJobs">Scheduled Jobs</a></li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    <div class=" dropdown btn-group">
+                                        <button class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                                            Administration
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenu1">
+                                            <li><a class="dropdown-item" asp-controller="Booking" asp-action="GetClients" type="button">Booking Management</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Administration" asp-action="AllRoles" type="button">Role Management</a></li>
+                                            <li><a class="dropdown-item" type="button" asp-controller="Administration" asp-action="GetUsers">User Management</a></li>
+                                            <li><a class="dropdown-item" type="button" asp-controller="Administration" asp-action="ScheduleJobs">Scheduled Jobs</a></li>
 
-                                        <li><a class="dropdown-item" type="button">Doctor</a></li>
-                                        <li><a class="dropdown-item" type="button">Procedure</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                            <li><a class="dropdown-item" type="button">Doctor</a></li>
+                                            <li><a class="dropdown-item" type="button">Procedure</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+
                         }
 
                     </ul>

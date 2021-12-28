@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace DentistApp.Controllers
 {
+    [Authorize(Policy = "AdminPolicy")]
     public class AdministrationController : Controller
     {
         protected readonly RoleManager<IdentityRole> _roleManager;
@@ -40,7 +41,7 @@ namespace DentistApp.Controllers
 
 
         //Role Management
-
+        [Authorize(Policy = "AdminPolicy")]
         [HttpGet]
         public async Task<IActionResult> AllRoles()
         {
@@ -71,7 +72,7 @@ namespace DentistApp.Controllers
             return View(rolesViewModels);
 
         }
-
+        [Authorize(Policy = "AdminPolicy")]
         [HttpGet]
         public IActionResult CreateRole()
         {
@@ -83,6 +84,8 @@ namespace DentistApp.Controllers
             }
             return View(model);
         }
+
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost]
         public async Task<IActionResult> CreateRole(RoleCreateViewModel model)
         {
@@ -114,7 +117,7 @@ namespace DentistApp.Controllers
             return View(model);
 
         }
-
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> DeleteRole(string Id)
         {
             var role = await _roleManager.FindByIdAsync(Id);
@@ -126,6 +129,7 @@ namespace DentistApp.Controllers
             }
             return RedirectToAction("AllRoles");
         }
+        [Authorize(Policy = "AdminPolicy")]
 
         [HttpGet]
         public async Task<IActionResult> UpdateRole(string Id)
@@ -156,6 +160,7 @@ namespace DentistApp.Controllers
             return View(model);
 
         }
+        [Authorize(Policy = "AdminPolicy")]
 
         [HttpPost]
         public async Task<IActionResult> UpdateRole(RoleCreateViewModel model)
@@ -201,7 +206,7 @@ namespace DentistApp.Controllers
 
         //User Management
 
-
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetUsers()
         {
             var users = _userManager.Users.ToList();
@@ -220,7 +225,7 @@ namespace DentistApp.Controllers
             return View(model);
         }
 
-
+        [Authorize(Policy = "AdminPolicy")]
         [HttpGet]
         public async Task<IActionResult> DeleteUser(string Id)
         {
@@ -243,6 +248,7 @@ namespace DentistApp.Controllers
                 return View(model);
             }
         }
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost]
         public async Task<IActionResult> ConfirmDeleteUser(string Id)
         {
@@ -280,6 +286,7 @@ namespace DentistApp.Controllers
             return RedirectToAction("GetUsers");
 
         }
+        [Authorize(Policy = "AdminPolicy")]
 
         [HttpGet]
         public async Task<IActionResult> EditUser(string Id)
@@ -310,6 +317,7 @@ namespace DentistApp.Controllers
             }
 
         }
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost]
         public async Task<IActionResult> EditUser(EditUserAdministrationViewModel model)
         {
@@ -347,6 +355,7 @@ namespace DentistApp.Controllers
 
 
         [HttpGet]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AddInUserRoles(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -382,6 +391,7 @@ namespace DentistApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AddInUserRoles(List<RoleUserAdministrationViewModel> models, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -410,11 +420,13 @@ namespace DentistApp.Controllers
 
         //Scheduled Jobs
         [HttpGet]
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult ScheduleJobs()
         {
             return View();
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> ScheduleJobNotifyEmail()
         {
             IJobDetail job = JobBuilder.Create<SimpleJob>()
