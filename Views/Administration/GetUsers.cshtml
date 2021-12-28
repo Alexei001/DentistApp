@@ -1,0 +1,75 @@
+﻿@model List<GetUsersViewModel>
+
+
+@{
+    ViewBag.Title = "All Users";
+}
+<div class="d-flex justify-content-center" style="width:100%;height:auto">
+    @if (Model.Any())
+    {
+        <div class="card" style="width:90%;">
+            <div class="card-header">
+                <h4>All Users</h4>
+            </div>
+            <div class="card-body m-0 p-0">
+                <table class="table m-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">User Name</th>
+                            <th scope="col">User Email </th>
+                            <th scope="col">Email Confirmed </th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <th scope="row">@user.Name</th>
+                                <td>@user.Email</td>
+                                <td>@user.EmailConfirmed</td>
+                                <td class="p-0 m-0" style="vertical-align: unset;">
+                                    @foreach (var role in user.RoleNames)
+                                    {
+                                        <p class="p-0 m-0">@role</p>
+                                    }
+                                </td>
+                                <td class="d-flex justify-content-end align-content-center">
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+                                        <a type="button" asp-controller="Administration" asp-action="EditUser" asp-route-Id="@user.Id" class="btn btn-outline-warning">Update</a>
+                                        <a type="button" asp-controller="Administration" asp-action="DeleteUser" asp-route-Id="@user.Id" class="btn btn-outline-danger">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="card-footer">
+                <a class="btn btn-success" asp-controller="Account" asp-action="Register">Register One!</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card w-75">
+            <div class="card-header">
+                <h4>All Roles</h4>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-primary"></h5>
+                <p class="card-text">Doesn't have any Users yet!</p>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-success" asp-controller="Account" asp-action="Register">Register One!</a>
+            </div>
+        </div>
+    }
+
+
+
+
+</div>

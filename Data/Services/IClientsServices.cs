@@ -11,6 +11,7 @@ namespace DentistApp.Data.Services
     {
         Task<AllClientsModel> GetAllClients(SortState sortOrder, string searchString, int pageSize, int pageNumber);
 
+        List<Client> GetNonFilteringClients();
         Client GetClientById(int id);
 
         bool AddNewClient(Client model);

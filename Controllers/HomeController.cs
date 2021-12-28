@@ -15,43 +15,12 @@ namespace DentistApp.Controllers
 
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IScheduler _scheduler;
-        private readonly AplicationContext context;
-
-        public HomeController(ILogger<HomeController> logger, IScheduler scheduler, AplicationContext context)
-        {
-            _logger = logger;
-            _scheduler = scheduler;
-            this.context = context;
-        }
 
         public IActionResult Index()
         {
 
             return View();
         }
-        public async Task<IActionResult> SimpleJob()
-        {
-
-            IJobDetail job = JobBuilder.Create<SimpleJob>()
-                                             .WithIdentity("simplejob", "qurtzexamples")
-                                        .Build();
-            job.JobDataMap.Put("client", new ClientTrigger { Clients = context.Clients.Where(c => c.Notify == false).ToList() });
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("testtrigger", "qurtzexamples")
-                .StartNow()
-                .WithSimpleSchedule(x => x
-                .WithIntervalInSeconds(50)
-                    .WithRepeatCount(1))
-            .Build();
-
-            await _scheduler.ScheduleJob(job, trigger);
-
-
-            return RedirectToAction("Index");
-        }
-
         public IActionResult Privacy()
         {
             return View();

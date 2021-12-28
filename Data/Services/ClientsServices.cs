@@ -104,5 +104,13 @@ namespace DentistApp.Data.Services
 
             return false;
         }
+
+        public List<Client> GetNonFilteringClients()
+        {
+            return context.Clients
+                .Include(c=>c.Procedure)
+                .Include(c=>c.Doctor)
+                .ToList();
+        }
     }
 }

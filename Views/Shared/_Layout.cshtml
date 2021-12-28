@@ -26,9 +26,6 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SimpleJob">SimpleJob</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         @if (signInManager.IsSignedIn(User))
@@ -52,7 +49,9 @@
                                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenu1">
                                         <li><a class="dropdown-item" asp-controller="Booking" asp-action="GetClients" type="button">Booking Management</a></li>
                                         <li><a class="dropdown-item" asp-controller="Administration" asp-action="AllRoles" type="button">Role Management</a></li>
-                                        <li><a class="dropdown-item" type="button">User Management</a></li>
+                                        <li><a class="dropdown-item" type="button" asp-controller="Administration" asp-action="GetUsers">User Management</a></li>
+                                        <li><a class="dropdown-item" type="button" asp-controller="Administration" asp-action="ScheduleJobs">Scheduled Jobs</a></li>
+
                                         <li><a class="dropdown-item" type="button">Doctor</a></li>
                                         <li><a class="dropdown-item" type="button">Procedure</a></li>
                                     </ul>
@@ -97,6 +96,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+    @if (IsSectionDefined("Script"))
+    {
+        @RenderSection("Script", required: true);
+    }
 </body>
 </html>

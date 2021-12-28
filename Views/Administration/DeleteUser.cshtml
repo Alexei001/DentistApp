@@ -1,0 +1,97 @@
+﻿@model DeleteUserViewModel;
+
+@{
+    ViewBag.Title = "Delete User Page";
+}
+@if (Model.Clients.Any())
+{
+    <h5 class="text-danger">This User have a Rezervation</h5>
+    <div class="card">
+        <div class="card-header">
+            <h5>Delete User @Model.Name </h5>
+        </div>
+        <div class="card-body">
+            <div class="card-title"><h6>User Email: @Model.Email</h6></div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Doctor</th>
+                        <th scope="col">Procedure</th>
+                        <th scope="col">Rezervation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Clients)
+                    {
+                        <tr>
+                            <th scope="row">@item.Name</th>
+                            <td>@item.Email</td>
+                            <td>@item.Doctor.Name</td>
+                            <td>@item.Procedure.Name</td>
+                            <td>@item.Available</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-muted">
+            <form style="display:inline" asp-action="ConfirmDeleteUser" asp-controller="Administration" asp-route-Id="@Model.Id" method="post">
+                <span id="deleteButtonSpan_@Model.Id">
+                    <a onclick="deleteConfirmation('@Model.Id', true)" class="btn btn-danger">
+                        Delete All?
+                    </a>
+                </span>
+
+
+                <span id="deleteConfirmationSpan_@Model.Id"
+                      style="display:none">
+                    Are you sure you whant to delete?
+                    <button class="btn btn-danger fw-bold"
+                            type="submit">
+                        Yes
+                    </button>
+                    <a onclick="deleteConfirmation('@Model.Id',false)" class="btn btn-primary">No</a>
+                </span>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card ">
+        <div class="card-header">
+            <h5 class="text-danger">Delete User @Model.Name ??</h5>
+        </div>
+        <div class="card-body">
+            <h6>User Email: @Model.Email</h6>
+        </div>
+        <div class="card-footer text-muted">
+
+            <form style="display:inline" asp-action="ConfirmDeleteUser" asp-controller="Administration" asp-route-Id="@Model.Id" method="post">
+                <span id="deleteButtonSpan_@Model.Id">
+                    <a onclick="deleteConfirmation('@Model.Id', true)" class="btn btn-danger">
+                        Delete
+                    </a>
+                </span>
+
+
+                <span id="deleteConfirmationSpan_@Model.Id"
+                      style="display:none">
+                    Are you sure you whant to delete?
+                    <button class="btn btn-danger fw-bold"
+                            type="submit">
+                        Yes
+                    </button>
+                    <a onclick="deleteConfirmation('@Model.Id',false)" class="btn btn-primary">No</a>
+                </span>
+            </form>
+        </div>
+    </div>
+}
+
+@section Script{
+    <script src="~/js/site.js"></script>
+};
