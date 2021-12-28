@@ -52,7 +52,7 @@ It's a small ASP.NET Core MVC application that allow scheduling for medical proc
 - Doctor
 - Procedure
 
-###### Register Form ![Form Image](/DentistApp/PrntScrProject/RegisterForm.jpg "Optional Title")
+###### Register Form ![Form Image](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/RegisterForm.jpg "Image")
 - User Email
 - User Name
 - Password
@@ -61,7 +61,7 @@ It's a small ASP.NET Core MVC application that allow scheduling for medical proc
 - Register new user is Done By Email Confirmation
   - Email confirmation With MailKit, SmptClient
 
-###### Booking Form 
+###### Booking Form ![Booking Form](https://github.com/Alexei001/DentistApp/blob/master/PrntScrProject/BookForm.png "Image")
 - Doctor
   - Choose from Enum list only 5 doctor
 - Procedure
