@@ -38,7 +38,7 @@ namespace DentistApp.Data
                         }.ToMessageBody();
 
                         client.Connect("smtp.gmail.com", 465, true);
-                        client.Authenticate("test.serv.g@gmail.com", "SuperAdmin966@");
+                        client.Authenticate("testemai@gmai.com", "xxxxxPassword");
                         client.Send(message);
 
                         client.Disconnect(true);
