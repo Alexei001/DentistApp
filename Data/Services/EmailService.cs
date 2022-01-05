@@ -47,7 +47,7 @@ namespace DentistApp.Data.Services
                 message.Body = new BodyBuilder() { HtmlBody = $"<h6 style=\"color:black;\">Hello {userName} you are succesfull booked on : {available}</h6>" }.ToMessageBody();
 
                 client.Connect("smtp.gmail.com", 465, true);
-                client.Authenticate("test.serv.g@gmail.com", "SuperAdmin966@");
+                client.Authenticate("testemail@gmail.com", "xxxxxxpassword");
                 client.Send(message);
 
                 client.Disconnect(true);
